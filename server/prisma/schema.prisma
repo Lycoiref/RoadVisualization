@@ -1,140 +1,140 @@
 generator client {
-  provider = "prisma-client-js"
+    provider = "prisma-client-js"
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
 }
 
 model five_carflow20140101 {
-  id           Int  @id @default(autoincrement())
-  road_id      Int?
-  car_flow_out Int?
-  car_flow_in  Int?
-  time_minute  Int?
+    id           Int  @id @default(autoincrement())
+    road_id      Int?
+    car_flow_out Int?
+    car_flow_in  Int?
+    time_minute  Int?
 }
 
 model five_carflow20140102 {
-  id           Int  @id @default(autoincrement())
-  road_id      Int?
-  car_flow_out Int?
-  car_flow_in  Int?
-  time_minute  Int?
+    id           Int  @id @default(autoincrement())
+    road_id      Int?
+    car_flow_out Int?
+    car_flow_in  Int?
+    time_minute  Int?
 }
 
 model five_carflow20140103 {
-  id           Int  @id @default(autoincrement())
-  road_id      Int?
-  car_flow_out Int?
-  car_flow_in  Int?
-  time_minute  Int?
+    id           Int  @id @default(autoincrement())
+    road_id      Int?
+    car_flow_out Int?
+    car_flow_in  Int?
+    time_minute  Int?
 }
 
 model five_carflow20140104 {
-  id           Int  @id @default(autoincrement())
-  road_id      Int?
-  car_flow_out Int?
-  car_flow_in  Int?
-  time_minute  Int?
+    id           Int  @id @default(autoincrement())
+    road_id      Int?
+    car_flow_out Int?
+    car_flow_in  Int?
+    time_minute  Int?
 }
 
 model five_carflow20140105 {
-  id           Int  @id @default(autoincrement())
-  road_id      Int?
-  car_flow_out Int?
-  car_flow_in  Int?
-  time_minute  Int?
+    id           Int  @id @default(autoincrement())
+    road_id      Int?
+    car_flow_out Int?
+    car_flow_in  Int?
+    time_minute  Int?
 }
 
 model five_carflow20140106 {
-  id           Int  @id @default(autoincrement())
-  road_id      Int?
-  car_flow_out Int?
-  car_flow_in  Int?
-  time_minute  Int?
+    id           Int  @id @default(autoincrement())
+    road_id      Int?
+    car_flow_out Int?
+    car_flow_in  Int?
+    time_minute  Int?
 }
 
 model five_carflow20140107 {
-  id           Int  @id @default(autoincrement())
-  road_id      Int?
-  car_flow_out Int?
-  car_flow_in  Int?
-  time_minute  Int?
+    id           Int  @id @default(autoincrement())
+    road_id      Int?
+    car_flow_out Int?
+    car_flow_in  Int?
+    time_minute  Int?
 }
 
 model five_carflow20140108 {
-  id           Int  @id @default(autoincrement())
-  road_id      Int?
-  car_flow_out Int?
-  car_flow_in  Int?
-  time_minute  Int?
+    id           Int  @id @default(autoincrement())
+    road_id      Int?
+    car_flow_out Int?
+    car_flow_in  Int?
+    time_minute  Int?
 }
 
 model five_carflow20140109 {
-  id           Int  @id @default(autoincrement())
-  road_id      Int?
-  car_flow_out Int?
-  car_flow_in  Int?
-  time_minute  Int?
+    id           Int  @id @default(autoincrement())
+    road_id      Int?
+    car_flow_out Int?
+    car_flow_in  Int?
+    time_minute  Int?
 }
 
 model five_carflow20140110 {
-  id           Int  @id @default(autoincrement())
-  road_id      Int?
-  car_flow_out Int?
-  car_flow_in  Int?
-  time_minute  Int?
+    id           Int  @id @default(autoincrement())
+    road_id      Int?
+    car_flow_out Int?
+    car_flow_in  Int?
+    time_minute  Int?
 }
 
 model five_carflow20140111 {
-  id           Int  @id @default(autoincrement())
-  road_id      Int?
-  car_flow_out Int?
-  car_flow_in  Int?
-  time_minute  Int?
+    id           Int  @id @default(autoincrement())
+    road_id      Int?
+    car_flow_out Int?
+    car_flow_in  Int?
+    time_minute  Int?
 }
 
 model five_carflow20140112 {
-  id           Int  @id @default(autoincrement())
-  road_id      Int?
-  car_flow_out Int?
-  car_flow_in  Int?
-  time_minute  Int?
+    id           Int  @id @default(autoincrement())
+    road_id      Int?
+    car_flow_out Int?
+    car_flow_in  Int?
+    time_minute  Int?
 }
 
 model five_carflow20140113 {
-  id           Int  @id @default(autoincrement())
-  road_id      Int?
-  car_flow_out Int?
-  car_flow_in  Int?
-  time_minute  Int?
+    id           Int  @id @default(autoincrement())
+    road_id      Int?
+    car_flow_out Int?
+    car_flow_in  Int?
+    time_minute  Int?
 }
 
 model five_carflow20140114 {
-  id           Int  @id @default(autoincrement())
-  road_id      Int?
-  car_flow_out Int?
-  car_flow_in  Int?
-  time_minute  Int?
+    id           Int  @id @default(autoincrement())
+    road_id      Int?
+    car_flow_out Int?
+    car_flow_in  Int?
+    time_minute  Int?
 }
 
 model five_carflow20140115 {
-  id           Int  @id @default(autoincrement())
-  road_id      Int?
-  car_flow_out Int?
-  car_flow_in  Int?
-  time_minute  Int?
+    id           Int  @id @default(autoincrement())
+    road_id      Int?
+    car_flow_out Int?
+    car_flow_in  Int?
+    time_minute  Int?
 }
 
 model load_track_detail {
-  id   Int    @id @default(autoincrement())
-  lat1 Float?
-  lng1 Float?
-  lat2 Float?
-  lng2 Float?
-  lat3 Float?
-  lng3 Float?
-  lat4 Float?
-  lng4 Float?
+    id   Int    @id @default(autoincrement())
+    lat1 Float?
+    lng1 Float?
+    lat2 Float?
+    lng2 Float?
+    lat3 Float?
+    lng3 Float?
+    lat4 Float?
+    lng4 Float?
 }
