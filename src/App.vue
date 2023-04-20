@@ -1,6 +1,7 @@
 <script setup>
 // 引入 echarts 核心模块，核心模块提供了 echarts 使用必须要的接口。
 import * as echarts from 'echarts/core'
+import axios from 'axios'
 import { ref, onMounted } from 'vue'
 // 引入柱状图图表，图表后缀都为 Chart
 import { BarChart } from 'echarts/charts'
@@ -17,6 +18,7 @@ import {
 import { LabelLayout, UniversalTransition } from 'echarts/features'
 // 引入 Canvas 渲染器，注意引入 CanvasRenderer 或者 SVGRenderer 是必须的一步
 import { CanvasRenderer } from 'echarts/renderers'
+import { LinesChart } from 'echarts/charts'
 
 // 注册必须的组件
 echarts.use([
@@ -29,13 +31,18 @@ echarts.use([
     LabelLayout,
     UniversalTransition,
     CanvasRenderer,
-    GeoComponent
+    GeoComponent,
+    LinesChart
 ])
 
-echarts.registerMap('world')
 
 const chartDom = ref()
-onMounted(() => {
+onMounted(async () => {
+    // 从./world.json中读入地图数据
+    let res = await axios.get('./world.json')
+    let worldgeoJSON = res.data
+    console.log(worldgeoJSON)
+    echarts.registerMap('world', worldgeoJSON)
     console.log(chartDom.value)
     let myChart = echarts.init(chartDom.value)
     myChart.setOption({
