@@ -39,24 +39,27 @@ echarts.use([
 const chartDom = ref()
 onMounted(async () => {
     // 从./world.json中读入地图数据
-    let res = await axios.get('./world.json')
+    let res = await axios.get('./wenzhou.json')
     let worldgeoJSON = res.data
+    res = await axios.get('http://localhost:3000')
+    let roadData = res.data
+    console.log(roadData)
     console.log(worldgeoJSON)
     echarts.registerMap('world', worldgeoJSON)
     console.log(chartDom.value)
     let myChart = echarts.init(chartDom.value)
     myChart.setOption({
-        progressive: 20000,
-        backgroundColor: '#111',
+        // progressive: 20000,
+        backgroundColor: '#fff',
         geo: {
-            center: [-74.04327099998152, 40.86737600240287],
-            zoom: 360,
+            center: [120.7102329492569, 27.97172985316606],
+            zoom: 10,
             map: 'world',
             roam: true,
             silent: true,
             itemStyle: {
                 color: 'transparent',
-                borderColor: 'rgba(255,255,255,0.1)',
+                borderColor: 'rgba(0,0,0,0.1)',
                 borderWidth: 1
             }
         },
@@ -64,25 +67,46 @@ onMounted(async () => {
             {
                 type: 'lines',
                 coordinateSystem: 'geo',
-                blendMode: 'lighter',
+                // blendMode: 'lighter',
                 dimensions: ['value'],
-                data: new Float64Array(),
+                data: roadData,
                 polyline: true,
                 large: true,
                 lineStyle: {
                     color: 'orange',
-                    width: 0.5,
+                    width: 5,
                     opacity: 0.3
                 }
             }
-        ]
+        ],
+        animationThreshold: 200000
     })
+    setTimeout(() => {
+        myChart.setOption({
+            series: [
+                {
+                    type: 'lines',
+                    coordinateSystem: 'geo',
+                    // blendMode: 'lighter',
+                    dimensions: ['value'],
+                    data: roadData,
+                    polyline: true,
+                    large: true,
+                    lineStyle: {
+                        color: 'orange',
+                        width: 50,
+                        opacity: 0.3
+                    }
+                }
+            ],
+        })
+    }, 5000)
     // console.log(myChart)
 })
 </script>
 
 <template>
-    <div class="page">1111
+    <div class="page">
         <div class="echarts" ref="chartDom"></div>
         <!-- <el-amap :zoom="zoom" :center="center"></el-amap> -->
     </div>
@@ -92,10 +116,13 @@ onMounted(async () => {
 .page {
     width: 100vw;
     height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .echarts {
-    width: 500px;
-    height: 500px;
+    width: 100%;
+    height: 100%;
 }
 </style>
