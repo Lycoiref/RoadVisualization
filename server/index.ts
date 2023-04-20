@@ -6,7 +6,7 @@ const prisma = new PrismaClient();
 
 (async () => {
     let day1 = await prisma.five_carflow20140101.findMany()
-    console.log(day1);
+    console.log(day1)
 })()
 
 
