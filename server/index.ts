@@ -25,11 +25,12 @@ let roads: any = [];
         }
         roads.push({
             coords: points,
-            // lineStyle: {
-            //     color: 'orange',
-            //     width: 0.5,
-            //     opacity: 0.3
-            // }
+            lineStyle: {
+                effect: {
+                    show: true,
+                    period: 2
+                }
+            }
         })
     }
 })()

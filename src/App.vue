@@ -46,7 +46,6 @@ onMounted(async () => {
     console.log(roadData)
     console.log(worldgeoJSON)
     echarts.registerMap('world', worldgeoJSON)
-    console.log(chartDom.value)
     let myChart = echarts.init(chartDom.value)
     myChart.setOption({
         // progressive: 20000,
@@ -74,33 +73,22 @@ onMounted(async () => {
                 large: true,
                 lineStyle: {
                     color: 'orange',
-                    width: 5,
-                    opacity: 0.3
+                    width: 1,
+                    opacity: 0.1
+                },
+                showSymbol: true,
+                effect: {
+                    show: true,
+                    period: 4,
+                    symbolSize: 2
                 }
             }
         ],
         animationThreshold: 200000
     })
-    setTimeout(() => {
-        myChart.setOption({
-            series: [
-                {
-                    type: 'lines',
-                    coordinateSystem: 'geo',
-                    // blendMode: 'lighter',
-                    dimensions: ['value'],
-                    data: roadData,
-                    polyline: true,
-                    large: true,
-                    lineStyle: {
-                        color: 'orange',
-                        width: 50,
-                        opacity: 0.3
-                    }
-                }
-            ],
-        })
-    }, 5000)
+    console.log(myChart)
+    // setTimeout(() => {
+    // }, 5000)
     // console.log(myChart)
 })
 </script>
