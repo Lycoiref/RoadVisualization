@@ -35,7 +35,6 @@ echarts.use([
     LinesChart
 ])
 
-
 const chartDom = ref()
 onMounted(async () => {
     // 从./world.json中读入地图数据

@@ -138,3 +138,129 @@ model load_track_detail {
     lat4 Float?
     lng4 Float?
 }
+
+model day1 {
+    id           Int  @id @default(autoincrement())
+    road_id      Int?
+    car_flow_out Int?
+    car_flow_in  Int?
+    half_hour    Int?
+}
+
+model day2 {
+    id           Int  @id @default(autoincrement())
+    road_id      Int?
+    car_flow_out Int?
+    car_flow_in  Int?
+    half_hour    Int?
+}
+
+model day3 {
+    id           Int  @id @default(autoincrement())
+    road_id      Int?
+    car_flow_out Int?
+    car_flow_in  Int?
+    half_hour    Int?
+}
+
+model day4 {
+    id           Int  @id @default(autoincrement())
+    road_id      Int?
+    car_flow_out Int?
+    car_flow_in  Int?
+    half_hour    Int?
+}
+
+model day5 {
+    id           Int  @id @default(autoincrement())
+    road_id      Int?
+    car_flow_out Int?
+    car_flow_in  Int?
+    half_hour    Int?
+}
+
+model day6 {
+    id           Int  @id @default(autoincrement())
+    road_id      Int?
+    car_flow_out Int?
+    car_flow_in  Int?
+    half_hour    Int?
+}
+
+model day7 {
+    id           Int  @id @default(autoincrement())
+    road_id      Int?
+    car_flow_out Int?
+    car_flow_in  Int?
+    half_hour    Int?
+}
+
+model day8 {
+    id           Int  @id @default(autoincrement())
+    road_id      Int?
+    car_flow_out Int?
+    car_flow_in  Int?
+    half_hour    Int?
+}
+
+model day9 {
+    id           Int  @id @default(autoincrement())
+    road_id      Int?
+    car_flow_out Int?
+    car_flow_in  Int?
+    half_hour    Int?
+}
+
+model day10 {
+    id           Int  @id @default(autoincrement())
+    road_id      Int?
+    car_flow_out Int?
+    car_flow_in  Int?
+    half_hour    Int?
+}
+
+model day11 {
+    id           Int  @id @default(autoincrement())
+    road_id      Int?
+    car_flow_out Int?
+    car_flow_in  Int?
+    half_hour    Int?
+}
+
+model day12 {
+    id           Int  @id @default(autoincrement())
+    road_id      Int?
+    car_flow_out Int?
+    car_flow_in  Int?
+    half_hour    Int?
+}
+
+model day13 {
+    id           Int  @id @default(autoincrement())
+    road_id      Int?
+    car_flow_out Int?
+    car_flow_in  Int?
+    half_hour    Int?
+}
+
+model day14 {
+    id           Int  @id @default(autoincrement())
+    road_id      Int?
+    car_flow_out Int?
+    car_flow_in  Int?
+    half_hour    Int?
+}
+
+model day15 {
+    id           Int  @id @default(autoincrement())
+    road_id      Int?
+    car_flow_out Int?
+    car_flow_in  Int?
+    half_hour    Int?
+}
+
+model max_carflow {
+    id  Int @id @default(autoincrement())
+    day Int
+    max Int
+}
