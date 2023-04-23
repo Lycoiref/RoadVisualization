@@ -39,6 +39,43 @@ export class Series {
     }
 }
 
+export class EchartsOption {
+    // backgroundColor: '#fff',
+    // geo: {
+    //     center: [120.7102329492569, 27.97172985316606],
+    //     zoom: 100,
+    //     map: 'world',
+    //     roam: true,
+    //     silent: true,
+    //     itemStyle: {
+    //         color: 'transparent',
+    //         borderColor: 'rgba(0,0,0,0.1)',
+    //         borderWidth: 1
+    //     }
+    // },
+    // series: roadData,
+    // animationThreshold: 200000
+    public backgroundColor: string = '#fff'
+    public geo: any = {
+        center: [120.7102329492569, 27.97172985316606],
+        zoom: 100,
+        map: 'world',
+        roam: true,
+        silent: true,
+        itemStyle: {
+            color: 'transparent',
+            borderColor: 'rgba(0,0,0,0.1)',
+            borderWidth: 1
+        }
+    }
+    public series: any = []
+    public animationThreshold: number = 200000
+    public timeline: any = {
+        data: [],
+    }
+    public options: any = []
+}
+
 export function getMax(data: number[]) {
     let max = 0
     for (let item of data) {

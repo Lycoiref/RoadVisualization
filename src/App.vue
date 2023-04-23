@@ -58,22 +58,6 @@ onMounted(async () => {
     echarts.registerMap('world', worldgeoJSON)
     let myChart = echarts.init(chartDom.value)
     myChart.setOption({
-        // progressive: 20000,
-        backgroundColor: '#fff',
-        geo: {
-            center: [120.7102329492569, 27.97172985316606],
-            zoom: 100,
-            map: 'world',
-            roam: true,
-            silent: true,
-            itemStyle: {
-                color: 'transparent',
-                borderColor: 'rgba(0,0,0,0.1)',
-                borderWidth: 1
-            }
-        },
-        series: roadData,
-        animationThreshold: 200000
     })
     console.log(myChart)
     // setTimeout(() => {
