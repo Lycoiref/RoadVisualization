@@ -39,41 +39,37 @@ echarts.use([
 
 const chartDom = ref()
 onMounted(async () => {
+    let day = 1
     // 从./world.json中读入地图数据
     let res = await axios.get('./wenzhou.json')
     let worldgeoJSON = res.data
     res = await axios.get('http://localhost:3000/api/roads', {
-        query: {
-            day: 1,
+        params: {
+            day: day,
             section: 1
         }
     })
-    // 上面的代码不正确，需要流式接受数据
-    // axios({
-    //     method: 'get',
-    //     url: 'http://localhost:3000/api/roads',
-    //     responseType: 'stream'
-    // }).then((res) => {
-    //     res.data.on('data', (chunck) => {
-    //         console.log(chunck)
-    //     })
-    // })
+    day++
     let roadData = res.data
-    // res = await axios.get('http://localhost:3000/api/days', {
-    //     params: {
-    //         day: 1
-    //     }
-    // })
-    // let dayData = res.data
-    // console.log(dayData)
-    console.log(roadData)
-    console.log(worldgeoJSON)
+    // console.log(roadData)
+    // console.log(worldgeoJSON)
     echarts.registerMap('world', worldgeoJSON)
     let myChart = echarts.init(chartDom.value)
     myChart.setOption(roadData)
-    console.log(myChart)
-    // setTimeout(() => {
-    // }, 5000)
+    // console.log(myChart)
+    setInterval(async () => {
+        roadData = await axios.get('http://localhost:3000/api/roads', {
+            params: {
+                day: day,
+                section: 1
+            }
+        })
+        myChart.setOption(roadData.data)
+        day++
+        if (day > 15) {
+            day = 1
+        }
+    }, 50000)
     // console.log(myChart)
 })
 </script>
