@@ -12,7 +12,8 @@ import {
     GridComponent,
     DatasetComponent,
     TransformComponent,
-    GeoComponent
+    GeoComponent,
+    TimelineComponent
 } from 'echarts/components'
 // 标签自动布局、全局过渡动画等特性
 import { LabelLayout, UniversalTransition } from 'echarts/features'
@@ -32,7 +33,8 @@ echarts.use([
     UniversalTransition,
     CanvasRenderer,
     GeoComponent,
-    LinesChart
+    LinesChart,
+    TimelineComponent
 ])
 
 const chartDom = ref()
@@ -41,10 +43,21 @@ onMounted(async () => {
     let res = await axios.get('./wenzhou.json')
     let worldgeoJSON = res.data
     res = await axios.get('http://localhost:3000/api/roads', {
-        params: {
-            day: 1
+        query: {
+            day: 1,
+            section: 1
         }
     })
+    // 上面的代码不正确，需要流式接受数据
+    // axios({
+    //     method: 'get',
+    //     url: 'http://localhost:3000/api/roads',
+    //     responseType: 'stream'
+    // }).then((res) => {
+    //     res.data.on('data', (chunck) => {
+    //         console.log(chunck)
+    //     })
+    // })
     let roadData = res.data
     // res = await axios.get('http://localhost:3000/api/days', {
     //     params: {
@@ -57,8 +70,7 @@ onMounted(async () => {
     console.log(worldgeoJSON)
     echarts.registerMap('world', worldgeoJSON)
     let myChart = echarts.init(chartDom.value)
-    myChart.setOption({
-    })
+    myChart.setOption(roadData)
     console.log(myChart)
     // setTimeout(() => {
     // }, 5000)
