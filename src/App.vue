@@ -41,8 +41,19 @@ onMounted(async () => {
     // 从./world.json中读入地图数据
     let res = await axios.get('./wenzhou.json')
     let worldgeoJSON = res.data
-    res = await axios.get('http://localhost:3000')
+    res = await axios.get('http://localhost:3000/api/roads', {
+        params: {
+            day: 1
+        }
+    })
     let roadData = res.data
+    // res = await axios.get('http://localhost:3000/api/days', {
+    //     params: {
+    //         day: 1
+    //     }
+    // })
+    // let dayData = res.data
+    // console.log(dayData)
     console.log(roadData)
     console.log(worldgeoJSON)
     echarts.registerMap('world', worldgeoJSON)
@@ -52,7 +63,7 @@ onMounted(async () => {
         backgroundColor: '#fff',
         geo: {
             center: [120.7102329492569, 27.97172985316606],
-            zoom: 10,
+            zoom: 100,
             map: 'world',
             roam: true,
             silent: true,
@@ -62,28 +73,7 @@ onMounted(async () => {
                 borderWidth: 1
             }
         },
-        series: [
-            {
-                type: 'lines',
-                coordinateSystem: 'geo',
-                // blendMode: 'lighter',
-                dimensions: ['value'],
-                data: roadData,
-                polyline: true,
-                large: true,
-                lineStyle: {
-                    color: 'orange',
-                    width: 1,
-                    opacity: 0.1
-                },
-                showSymbol: true,
-                effect: {
-                    show: true,
-                    period: 4,
-                    symbolSize: 2
-                }
-            }
-        ],
+        series: roadData,
         animationThreshold: 200000
     })
     console.log(myChart)
