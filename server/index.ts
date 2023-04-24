@@ -52,7 +52,8 @@ async function getOption(day: number, section: number) {
             },
             series: seriesArr
         })
-
+        if (j === 1)
+            options.series = seriesArr
     }
     return options
 }

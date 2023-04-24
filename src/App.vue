@@ -38,8 +38,11 @@ echarts.use([
 ])
 
 const chartDom = ref()
+let day = 1
+let days = []
+let loaded = ref(false)
+let myChart
 onMounted(async () => {
-    let day = 1
     // 从./world.json中读入地图数据
     let res = await axios.get('./wenzhou.json')
     let worldgeoJSON = res.data
@@ -49,34 +52,102 @@ onMounted(async () => {
             section: 1
         }
     })
-    day++
     let roadData = res.data
-    // console.log(roadData)
+    console.log(roadData)
     // console.log(worldgeoJSON)
     echarts.registerMap('world', worldgeoJSON)
-    let myChart = echarts.init(chartDom.value)
+    myChart = echarts.init(chartDom.value)
     myChart.setOption(roadData)
+    // 监听鼠标滚轮事件
+    myChart.on('timelinechanged', function (params) {
+        console.log(params)
+    })
     // console.log(myChart)
-    setInterval(async () => {
-        roadData = await axios.get('http://localhost:3000/api/roads', {
+    // 为了之后的数据更新速度，提前把15天的数据都请求好
+    for (let i = 0; i < 15; i++) {
+        let res = await axios.get('http://localhost:3000/api/roads', {
             params: {
-                day: day,
+                day: i + 1,
                 section: 1
             }
         })
-        myChart.setOption(roadData.data)
-        day++
-        if (day > 15) {
-            day = 1
-        }
-    }, 50000)
+        days.push(res.data)
+    }
+    loaded.value = true
     // console.log(myChart)
 })
+
+const lastYear = async () => {
+    console.log('lastYear', day)
+    if (day < 2) {
+        day = 15
+    } else {
+        day--
+    }
+    // let roadData = await axios.get('http://localhost:3000/api/roads', {
+    //     params: {
+    //         day: day,
+    //         section: 1
+    //     }
+    // })
+    // console.log(roadData)
+    myChart.setOption(days[day - 1])
+}
+
+const nextYear = async () => {
+    console.log('nextYear', day)
+    if (day > 14) {
+        day = 1
+    } else {
+        day++
+    }
+    myChart.setOption(days[day - 1])
+}
 </script>
 
 <template>
     <div class="page">
         <div class="echarts" ref="chartDom"></div>
+        <div class="mask" v-if="loaded">
+            <div class="last-year change-year">
+                <svg
+                    t="1682299097125"
+                    class="icon"
+                    viewBox="0 0 1024 1024"
+                    version="1.1"
+                    xmlns="http://www.w3.org/2000/svg"
+                    p-id="1113"
+                    width="200"
+                    height="200"
+                    @click="lastYear"
+                >
+                    <path
+                        d="M685.226667 168.106667a64 64 0 0 1 0 90.453333l-256.426667 256.469333 256.426667 256.426667a64 64 0 0 1-90.453334 90.538667l-301.738666-301.696a64 64 0 0 1 0-90.538667l301.696-301.653333a64 64 0 0 1 90.538666 0z"
+                        fill="#dbdbdb"
+                        p-id="1114"
+                    ></path>
+                </svg>
+            </div>
+            <div class="next-year change-year">
+                <svg
+                    t="1682299117017"
+                    class="icon"
+                    viewBox="0 0 1024 1024"
+                    version="1.1"
+                    xmlns="http://www.w3.org/2000/svg"
+                    p-id="1313"
+                    width="200"
+                    height="200"
+                    @click="nextYear"
+                >
+                    <path
+                        d="M346.282667 854.442667a53.333333 53.333333 0 0 1 0-75.434667l263.978666-263.978667-263.978666-263.978666a53.333333 53.333333 0 1 1 75.434666-75.434667l301.696 301.696a53.333333 53.333333 0 0 1 0 75.434667l-301.696 301.696a53.333333 53.333333 0 0 1-75.434666 0z"
+                        fill="#dbdbdb"
+                        p-id="1314"
+                    ></path>
+                </svg>
+            </div>
+        </div>
         <!-- <el-amap :zoom="zoom" :center="center"></el-amap> -->
     </div>
 </template>
@@ -93,5 +164,24 @@ onMounted(async () => {
 .echarts {
     width: 100%;
     height: 100%;
+}
+
+.mask {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* 不阻挡鼠标事件 */
+    pointer-events: none;
+}
+
+.icon {
+    width: 50px;
+    pointer-events: all;
+}
+.icon :hover {
+    cursor: pointer;
 }
 </style>
